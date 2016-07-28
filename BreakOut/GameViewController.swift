@@ -47,6 +47,12 @@ class GameViewController: UIViewController {
         paddleDynamicBehavior.density = 10000
         paddleDynamicBehavior.allowsRotation = false
         dynamicAnimator.addBehavior(paddleDynamicBehavior)
+        
+        // Push ball
+        let pushBehavior = UIPushBehavior(items: [ball], mode: .Instantaneous)
+        pushBehavior.pushDirection = CGVectorMake(0.2, 1.0)
+        pushBehavior.magnitude = 0.25
+        dynamicAnimator.addBehavior(pushBehavior)
     }
     
     @IBAction func dragPaddle(sender: UIPanGestureRecognizer) {
