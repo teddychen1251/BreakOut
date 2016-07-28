@@ -31,10 +31,27 @@ class GameViewController: UIViewController {
         paddle.backgroundColor = UIColor.whiteColor()
         view.addSubview(paddle)
         
+        dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
+        // Ball dynamics
+        let ballDynamicBehavior = UIDynamicItemBehavior(items: [ball])
+        ballDynamicBehavior.friction = 0
+        ballDynamicBehavior.resistance = 0
+        ballDynamicBehavior.elasticity = 1.0
+        ballDynamicBehavior.allowsRotation = false
+        dynamicAnimator.addBehavior(ballDynamicBehavior)
         
+        // Paddle dynamics
+        let paddleDynamicBehavior = UIDynamicItemBehavior(items: [paddle])
+        paddleDynamicBehavior.resistance = 100
+        paddleDynamicBehavior.density = 10000
+        paddleDynamicBehavior.allowsRotation = false
+        dynamicAnimator.addBehavior(paddleDynamicBehavior)
     }
     
     @IBAction func dragPaddle(sender: UIPanGestureRecognizer) {
+        let panGesture = sender.locationInView(view)
+        paddle.center.x = panGesture.x
+        dynamicAnimator.updateItemUsingCurrentState(paddle)
     }
 }
