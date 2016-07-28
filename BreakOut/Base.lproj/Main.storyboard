@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="245" y="312"/>
         </scene>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="jZV-hF-ZuM">
             <objects>
-                <viewController id="tC1-3O-2vK" sceneMemberID="viewController">
+                <viewController id="tC1-3O-2vK" customClass="GameViewController" customModule="BreakOut" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B85-Jb-OZv"/>
                         <viewControllerLayoutGuide type="bottom" id="iMo-hB-rx8"/>
@@ -56,9 +56,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4sb-gu-NM4" appends="YES" id="crj-oh-5rB"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3z-Mk-osH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="4sb-gu-NM4">
+                    <connections>
+                        <action selector="dragPaddle:" destination="tC1-3O-2vK" id="F2q-4I-dFy"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="892" y="312"/>
         </scene>
