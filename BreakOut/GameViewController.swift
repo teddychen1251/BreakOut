@@ -8,16 +8,20 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     
     var dynamicAnimator = UIDynamicAnimator()
     var collisionBehavior = UICollisionBehavior()
     var paddle = UIView()
     var ball = UIView()
     var lives = 3
+    var allObjects = [UIView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        allObjects.append(paddle)
+        allObjects.append(ball)
         
         // Ball
         ball = UIView(frame: CGRectMake(view.center.x, view.center.y, 20, 20))
@@ -53,6 +57,13 @@ class GameViewController: UIViewController {
         pushBehavior.pushDirection = CGVectorMake(0.2, 1.0)
         pushBehavior.magnitude = 0.25
         dynamicAnimator.addBehavior(pushBehavior)
+        
+        // Collision behaviors
+        collisionBehavior = UICollisionBehavior(items: allObjects)
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        collisionBehavior.collisionMode = .Everything
+        collisionBehavior.collisionDelegate = self
+        dynamicAnimator.addBehavior(collisionBehavior)
     }
     
     @IBAction func dragPaddle(sender: UIPanGestureRecognizer) {
