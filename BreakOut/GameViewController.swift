@@ -15,13 +15,10 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     var paddle = UIView()
     var ball = UIView()
     var lives = 3
-    var allObjects = [UIView]()
+    var allObjects = [UIDynamicItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        allObjects.append(paddle)
-        allObjects.append(ball)
         
         // Ball
         ball = UIView(frame: CGRectMake(view.center.x, view.center.y, 20, 20))
@@ -57,6 +54,9 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         pushBehavior.pushDirection = CGVectorMake(0.2, 1.0)
         pushBehavior.magnitude = 0.25
         dynamicAnimator.addBehavior(pushBehavior)
+        
+        allObjects.append(paddle)
+        allObjects.append(ball)
         
         // Collision behaviors
         collisionBehavior = UICollisionBehavior(items: allObjects)
