@@ -16,6 +16,8 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     var ball = UIView()
     var lives = 3
     var allObjects = [UIDynamicItem]()
+    var bricks = [UIView]()
+    var brickColors = [UIColor.redColor(), UIColor.orangeColor(), UIColor.yellowColor(), UIColor.greenColor(), UIColor.blueColor(), UIColor.purpleColor()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,10 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         paddle = UIView(frame: CGRectMake(view.center.x, view.center.y * 1.7, 80, 20))
         paddle.backgroundColor = UIColor.whiteColor()
         view.addSubview(paddle)
+        
+        // Bricks
+        createRowOfAdjacentBricks(20, yValue: 20, amount: 10, color: UIColor.redColor(), startIndexForLoop: 0, brickMargin: 2.0)
+        createRowOfAdjacentBricks(20, yValue: 42, amount: 4, color: UIColor.orangeColor(), startIndexForLoop: 10, brickMargin: 2.0)
         
         dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
@@ -64,6 +70,19 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.collisionDelegate = self
         dynamicAnimator.addBehavior(collisionBehavior)
+    }
+    
+    func createRowOfAdjacentBricks(height: CGFloat, yValue: CGFloat, amount: Int, color: UIColor, startIndexForLoop: Int, brickMargin: CGFloat) {
+        let width = (view.frame.width - CGFloat(amount + 1) * brickMargin ) / CGFloat(amount)
+        var xValue = CGFloat(0.0) + brickMargin
+        for brickNumber in startIndexForLoop..<amount + startIndexForLoop {
+            bricks.append(UIView(frame: CGRectMake(xValue, yValue, width, height)))
+            bricks[brickNumber].backgroundColor = color
+            //bricks[brickNumber].layer.borderColor = UIColor.blackColor().CGColor
+            //bricks[brickNumber].layer.borderWidth = 2.0
+            view.addSubview(bricks[brickNumber])
+            xValue += (width + brickMargin)
+        }
     }
     
     @IBAction func dragPaddle(sender: UIPanGestureRecognizer) {
