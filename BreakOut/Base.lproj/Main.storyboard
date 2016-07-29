@@ -18,23 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BreakOut!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-v4-Y4W">
-                                <rect key="frame" x="228" y="43" width="144" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="144" id="GwV-8W-VSd"/>
-                                    <constraint firstAttribute="height" constant="48" id="opy-f6-HkR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Brickbreaker)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlZ-HD-BFi">
-                                <rect key="frame" x="253" y="72" width="94" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="ECb-Bj-WAI"/>
-                                    <constraint firstAttribute="height" constant="24" id="szT-fn-HE2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BreakOut!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-v4-Y4W">
+                                <rect key="frame" x="166" y="14" width="269" height="107"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -45,14 +31,20 @@
                                     <segue destination="tC1-3O-2vK" kind="show" id="CQZ-t6-kOT"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(Brickbreaker)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlZ-HD-BFi">
+                                <rect key="frame" x="227" y="78" width="146" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NlZ-HD-BFi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="El7-Ci-FmT"/>
+                            <constraint firstItem="NlZ-HD-BFi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-200.5" id="Nof-Tj-nDq"/>
                             <constraint firstItem="Zo1-v4-Y4W" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-233" id="b7e-qy-0FQ"/>
                             <constraint firstItem="afd-pA-EUY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eCt-w7-Z4y"/>
                             <constraint firstItem="Zo1-v4-Y4W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="k7x-S5-zul"/>
-                            <constraint firstItem="NlZ-HD-BFi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-216" id="pEX-kk-9ez"/>
                             <constraint firstItem="afd-pA-EUY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="75" id="zWw-PK-FI8"/>
                         </constraints>
                     </view>

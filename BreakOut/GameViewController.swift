@@ -41,8 +41,13 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         view.addSubview(paddle)
         
         // Bricks
-        createRowOfAdjacentBricks(20, yValue: 20, amount: 10, color: UIColor.purpleColor(), startIndexForLoop: 0, brickMargin: 2.0)
-        createRowOfAdjacentBricks(20, yValue: 42, amount: 4, color: UIColor.purpleColor(), startIndexForLoop: 10, brickMargin: 2.0)
+        createRowOfAdjacentBricks(20, yValue: 20, amount: 10, color: UIColor.redColor(), startIndexForLoop: 0, brickMargin: 2.0)
+        createRowOfAdjacentBricks(7, yValue: 42, amount: 6, color: UIColor.orangeColor(), startIndexForLoop: 10, brickMargin: 5.0)
+        createRowOfAdjacentBricks(50, yValue: 50, amount: 14, color: UIColor.yellowColor(), startIndexForLoop: 16, brickMargin: 7.0)
+        createRowOfAdjacentBricks(10, yValue: 102, amount: 8, color: UIColor.greenColor(), startIndexForLoop: 30, brickMargin: 2.5)
+        createRowOfAdjacentBricks(20, yValue: 115, amount: 10, color: UIColor.blueColor(), startIndexForLoop: 38, brickMargin: 2.0)
+        createRowOfAdjacentBricks(30, yValue: 150, amount: 4, color: UIColor.purpleColor(), startIndexForLoop: 48, brickMargin: 15.0)
+        
         
         dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
@@ -96,10 +101,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         var xValue = CGFloat(0.0) + brickMargin
         for brickNumber in startIndexForLoop..<amount + startIndexForLoop {
             bricks.append(Brick(frame: CGRectMake(xValue, yValue, width, height), originalColor: color))
-            //bricks.append(UIView(frame: CGRectMake(xValue, yValue, width, height)))
             bricks[brickNumber].backgroundColor = color
-            //bricks[brickNumber].layer.borderColor = UIColor.blackColor().CGColor
-            //bricks[brickNumber].layer.borderWidth = 2.0
             view.addSubview(bricks[brickNumber])
             xValue += (width + brickMargin)
         }
@@ -140,6 +142,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
             brickAdder(brick)
         }
         lives = 3
+        livesLabel.text = "Lives: \(lives)"
     }
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
@@ -154,6 +157,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
                 ball.removeFromSuperview()
                 collisionBehavior.removeItem(ball)
                 dynamicAnimator.updateItemUsingCurrentState(ball)
+                resetButton.hidden = false
             }
         }
     }
