@@ -18,8 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BreakOut!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-v4-Y4W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BreakOut!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zo1-v4-Y4W">
                                 <rect key="frame" x="166" y="14" width="269" height="107"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="107" id="jeu-Zs-ebJ"/>
+                                    <constraint firstAttribute="width" constant="269" id="rJS-ap-rNY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -31,8 +35,12 @@
                                     <segue destination="tC1-3O-2vK" kind="show" id="CQZ-t6-kOT"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(Brickbreaker)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlZ-HD-BFi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Brickbreaker)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlZ-HD-BFi">
                                 <rect key="frame" x="227" y="78" width="146" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="KSn-HN-SRc"/>
+                                    <constraint firstAttribute="height" constant="43" id="LyY-eu-y0S"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -71,8 +79,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7J-UW-D1Z">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7J-UW-D1Z">
                                 <rect key="frame" x="200" y="435" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="T9H-sO-nwb"/>
+                                    <constraint firstAttribute="height" constant="50" id="iFG-xK-auT"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
@@ -84,6 +96,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="sOn-XR-fvT" firstAttribute="leading" secondItem="M7W-4H-iip" secondAttribute="leadingMargin" constant="-20" id="LGJ-Lh-z8u"/>
+                            <constraint firstItem="s7J-UW-D1Z" firstAttribute="centerY" secondItem="M7W-4H-iip" secondAttribute="centerY" constant="160" id="ixy-t3-tow"/>
                             <constraint firstItem="s7J-UW-D1Z" firstAttribute="centerX" secondItem="M7W-4H-iip" secondAttribute="centerX" id="lDc-1Q-HWk"/>
                             <constraint firstItem="iMo-hB-rx8" firstAttribute="top" secondItem="sOn-XR-fvT" secondAttribute="bottom" constant="8" id="vpd-5M-4KK"/>
                         </constraints>
