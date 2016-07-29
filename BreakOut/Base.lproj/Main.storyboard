@@ -64,7 +64,7 @@
         <!--Game View Controller-->
         <scene sceneID="jZV-hF-ZuM">
             <objects>
-                <viewController id="tC1-3O-2vK" customClass="GameViewController" customModule="BreakOut" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameView" id="tC1-3O-2vK" customClass="GameViewController" customModule="BreakOut" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B85-Jb-OZv"/>
                         <viewControllerLayoutGuide type="bottom" id="iMo-hB-rx8"/>

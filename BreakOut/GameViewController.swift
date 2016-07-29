@@ -41,13 +41,13 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         view.addSubview(paddle)
         
         // Bricks
-        createRowOfAdjacentBricks(20, yValue: 20, amount: 10, color: UIColor.redColor(), startIndexForLoop: 0, brickMargin: 2.0)
-        createRowOfAdjacentBricks(7, yValue: 42, amount: 6, color: UIColor.orangeColor(), startIndexForLoop: 10, brickMargin: 5.0)
-        createRowOfAdjacentBricks(50, yValue: 50, amount: 14, color: UIColor.yellowColor(), startIndexForLoop: 16, brickMargin: 7.0)
-        createRowOfAdjacentBricks(10, yValue: 102, amount: 8, color: UIColor.greenColor(), startIndexForLoop: 30, brickMargin: 2.5)
-        createRowOfAdjacentBricks(20, yValue: 115, amount: 10, color: UIColor.blueColor(), startIndexForLoop: 38, brickMargin: 2.0)
-        createRowOfAdjacentBricks(30, yValue: 150, amount: 4, color: UIColor.purpleColor(), startIndexForLoop: 48, brickMargin: 15.0)
-        
+//        createRowOfAdjacentBricks(20, yValue: 20, amount: 10, color: UIColor.redColor(), startIndexForLoop: 0, brickMargin: 2.0)
+//        createRowOfAdjacentBricks(7, yValue: 42, amount: 6, color: UIColor.orangeColor(), startIndexForLoop: 10, brickMargin: 5.0)
+//        createRowOfAdjacentBricks(50, yValue: 50, amount: 14, color: UIColor.yellowColor(), startIndexForLoop: 16, brickMargin: 7.0)
+//        createRowOfAdjacentBricks(10, yValue: 102, amount: 8, color: UIColor.greenColor(), startIndexForLoop: 30, brickMargin: 2.5)
+//        createRowOfAdjacentBricks(20, yValue: 115, amount: 10, color: UIColor.blueColor(), startIndexForLoop: 38, brickMargin: 2.0)
+//        createRowOfAdjacentBricks(30, yValue: 150, amount: 4, color: UIColor.purpleColor(), startIndexForLoop: 48, brickMargin: 15.0)
+        createStartingBricks()
         
         dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
@@ -107,6 +107,20 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         }
     }
     
+    func createStartingBricks() {
+        var yValue = CGFloat(20)
+        var prevAmount = 0
+        for color in brickColors {
+            let amount = Int(arc4random_uniform(20)) + 1
+            let height = CGFloat(arc4random_uniform(80)) + 1
+            createRowOfAdjacentBricks(height, yValue: yValue, amount: amount, color: color, startIndexForLoop: prevAmount, brickMargin: CGFloat(drand48() + 0.2) * 10.0)
+            prevAmount += amount
+            yValue += (height + CGFloat(drand48() + 0.1) * 5.0)
+        }
+
+        
+    }
+    
     func checkForWin() -> Bool {
         for brick in bricks {
             if brick.hidden == false {
@@ -118,31 +132,34 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     
     // Reset helper funcs
     
-    func ballAdder(ball: UIView) {
-        view.addSubview(ball)
-        ball.center = view.center
-        collisionBehavior.addItem(ball)
-        dynamicAnimator.updateItemUsingCurrentState(ball)
-        dynamicAnimator.addBehavior(pushBehavior)
-    }
-    
-    func brickAdder(brick: Brick) {
-        if brick.hidden == true {
-            brick.hidden = false
-            view.addSubview(brick)
-            collisionBehavior.addItem(brick)
-            dynamicAnimator.updateItemUsingCurrentState(brick)
-        }
-    }
-    
+//    func ballAdder(ball: UIView) {
+//        view.addSubview(ball)
+//        ball.center = view.center
+//        collisionBehavior.addItem(ball)
+//        dynamicAnimator.updateItemUsingCurrentState(ball)
+//        dynamicAnimator.addBehavior(pushBehavior)
+//    }
+//    
+//    func brickAdder(brick: Brick) {
+//        if brick.hidden == true {
+//            brick.hidden = false
+//            view.addSubview(brick)
+//            collisionBehavior.addItem(brick)
+//            dynamicAnimator.updateItemUsingCurrentState(brick)
+//        }
+//    }
+//    
+//    func reset() {
+//        ballAdder(ball)
+//        for brick in bricks {
+//            brick.backgroundColor = brick.originalColor
+//            brickAdder(brick)
+//        }
+//        lives = 3
+//        livesLabel.text = "Lives: \(lives)"
+//    }
     func reset() {
-        ballAdder(ball)
-        for brick in bricks {
-            brick.backgroundColor = brick.originalColor
-            brickAdder(brick)
-        }
-        lives = 3
-        livesLabel.text = "Lives: \(lives)"
+        UIApplication.sharedApplication().keyWindow?.rootViewController = storyboard!.instantiateViewControllerWithIdentifier("GameView")
     }
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
