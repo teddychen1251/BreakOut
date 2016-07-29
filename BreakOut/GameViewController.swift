@@ -10,6 +10,8 @@ import UIKit
 
 class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     
+    @IBOutlet weak var livesLabel: UILabel!
+    
     var dynamicAnimator = UIDynamicAnimator()
     var collisionBehavior = UICollisionBehavior()
     var paddle = UIView()
@@ -81,6 +83,8 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.collisionDelegate = self
         dynamicAnimator.addBehavior(collisionBehavior)
+        
+        livesLabel.text = "Lives: \(lives)"
     }
     
     func createRowOfAdjacentBricks(height: CGFloat, yValue: CGFloat, amount: Int, color: UIColor, startIndexForLoop: Int, brickMargin: CGFloat) {
@@ -93,6 +97,20 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
             //bricks[brickNumber].layer.borderWidth = 2.0
             view.addSubview(bricks[brickNumber])
             xValue += (width + brickMargin)
+        }
+    }
+    
+    func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
+        if item.isEqual(ball) && p.y > paddle.center.y {
+            lives -= 1
+            if lives > 0 {
+                livesLabel.text = "Lives: \(lives)"
+                ball.center = view.center
+                dynamicAnimator.updateItemUsingCurrentState(ball)
+            } else {
+                livesLabel.text = "You lose"
+                ball.removeFromSuperview()
+            }
         }
     }
     
