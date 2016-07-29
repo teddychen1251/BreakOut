@@ -110,6 +110,23 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
             } else {
                 livesLabel.text = "You lose"
                 ball.removeFromSuperview()
+                collisionBehavior.removeItem(ball)
+                dynamicAnimator.updateItemUsingCurrentState(ball)
+            }
+        }
+    }
+    
+    func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
+        for brick in bricks {
+            if (item1.isEqual(ball) && item2.isEqual(brick)) || (item2.isEqual(ball) && item1.isEqual(brick)) {
+                if brick.backgroundColor != UIColor.purpleColor() {
+                    brick.backgroundColor = brickColors[brickColors.indexOf(brick.backgroundColor!)! + 1]
+                } else {
+                    brick.hidden = true
+                    brick.removeFromSuperview()
+                    collisionBehavior.removeItem(brick)
+                    dynamicAnimator.updateItemUsingCurrentState(brick)
+                }
             }
         }
     }
