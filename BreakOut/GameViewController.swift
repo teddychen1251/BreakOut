@@ -37,8 +37,8 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         view.addSubview(paddle)
         
         // Bricks
-        createRowOfAdjacentBricks(20, yValue: 20, amount: 10, color: UIColor.redColor(), startIndexForLoop: 0, brickMargin: 2.0)
-        createRowOfAdjacentBricks(20, yValue: 42, amount: 4, color: UIColor.orangeColor(), startIndexForLoop: 10, brickMargin: 2.0)
+        createRowOfAdjacentBricks(20, yValue: 20, amount: 10, color: UIColor.purpleColor(), startIndexForLoop: 0, brickMargin: 2.0)
+        createRowOfAdjacentBricks(20, yValue: 42, amount: 4, color: UIColor.purpleColor(), startIndexForLoop: 10, brickMargin: 2.0)
         
         dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
@@ -100,6 +100,15 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         }
     }
     
+    func checkForWin() -> Bool {
+        for brick in bricks {
+            if brick.hidden == false {
+                return false
+            }
+        }
+        return true
+    }
+    
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
         if item.isEqual(ball) && p.y > paddle.center.y {
             lives -= 1
@@ -128,6 +137,12 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
                     dynamicAnimator.updateItemUsingCurrentState(brick)
                 }
             }
+        }
+        if checkForWin() {
+            ball.removeFromSuperview()
+            collisionBehavior.removeItem(ball)
+            dynamicAnimator.updateItemUsingCurrentState(ball)
+            livesLabel.text = "You win!"
         }
     }
     
