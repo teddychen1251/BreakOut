@@ -79,11 +79,20 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7J-UW-D1Z">
+                                <rect key="frame" x="200" y="435" width="200" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="onTappedResetButton:" destination="tC1-3O-2vK" eventType="touchUpInside" id="XjD-mz-OW6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="sOn-XR-fvT" firstAttribute="leading" secondItem="M7W-4H-iip" secondAttribute="leadingMargin" constant="-20" id="LGJ-Lh-z8u"/>
+                            <constraint firstItem="s7J-UW-D1Z" firstAttribute="centerX" secondItem="M7W-4H-iip" secondAttribute="centerX" id="lDc-1Q-HWk"/>
                             <constraint firstItem="iMo-hB-rx8" firstAttribute="top" secondItem="sOn-XR-fvT" secondAttribute="bottom" constant="8" id="vpd-5M-4KK"/>
                         </constraints>
                         <connections>
@@ -92,6 +101,7 @@
                     </view>
                     <connections>
                         <outlet property="livesLabel" destination="sOn-XR-fvT" id="CWj-mT-iN9"/>
+                        <outlet property="resetButton" destination="s7J-UW-D1Z" id="b8n-ej-d1C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3z-Mk-osH" userLabel="First Responder" sceneMemberID="firstResponder"/>

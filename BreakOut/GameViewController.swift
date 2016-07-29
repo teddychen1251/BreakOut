@@ -11,18 +11,22 @@ import UIKit
 class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     
     @IBOutlet weak var livesLabel: UILabel!
+    @IBOutlet weak var resetButton: UIButton!
     
     var dynamicAnimator = UIDynamicAnimator()
+    var pushBehavior = UIPushBehavior()
     var collisionBehavior = UICollisionBehavior()
     var paddle = UIView()
     var ball = UIView()
     var lives = 3
     var allObjects = [UIDynamicItem]()
-    var bricks = [UIView]()
+    var bricks = [Brick]()
     var brickColors = [UIColor.redColor(), UIColor.orangeColor(), UIColor.yellowColor(), UIColor.greenColor(), UIColor.blueColor(), UIColor.purpleColor()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        resetButton.hidden = true
         
         // Ball
         ball = UIView(frame: CGRectMake(view.center.x, view.center.y, 20, 20))
@@ -69,7 +73,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         }
         
         // Push ball
-        let pushBehavior = UIPushBehavior(items: [ball], mode: .Instantaneous)
+        pushBehavior = UIPushBehavior(items: [ball], mode: .Instantaneous)
         pushBehavior.pushDirection = CGVectorMake(0.2, 1.0)
         pushBehavior.magnitude = 0.25
         dynamicAnimator.addBehavior(pushBehavior)
@@ -91,7 +95,8 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         let width = (view.frame.width - CGFloat(amount + 1) * brickMargin ) / CGFloat(amount)
         var xValue = CGFloat(0.0) + brickMargin
         for brickNumber in startIndexForLoop..<amount + startIndexForLoop {
-            bricks.append(UIView(frame: CGRectMake(xValue, yValue, width, height)))
+            bricks.append(Brick(frame: CGRectMake(xValue, yValue, width, height), originalColor: color))
+            //bricks.append(UIView(frame: CGRectMake(xValue, yValue, width, height)))
             bricks[brickNumber].backgroundColor = color
             //bricks[brickNumber].layer.borderColor = UIColor.blackColor().CGColor
             //bricks[brickNumber].layer.borderWidth = 2.0
@@ -107,6 +112,34 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
             }
         }
         return true
+    }
+    
+    // Reset helper funcs
+    
+    func ballAdder(ball: UIView) {
+        view.addSubview(ball)
+        ball.center = view.center
+        collisionBehavior.addItem(ball)
+        dynamicAnimator.updateItemUsingCurrentState(ball)
+        dynamicAnimator.addBehavior(pushBehavior)
+    }
+    
+    func brickAdder(brick: Brick) {
+        if brick.hidden == true {
+            brick.hidden = false
+            view.addSubview(brick)
+            collisionBehavior.addItem(brick)
+            dynamicAnimator.updateItemUsingCurrentState(brick)
+        }
+    }
+    
+    func reset() {
+        ballAdder(ball)
+        for brick in bricks {
+            brick.backgroundColor = brick.originalColor
+            brickAdder(brick)
+        }
+        lives = 3
     }
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
@@ -143,6 +176,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
             collisionBehavior.removeItem(ball)
             dynamicAnimator.updateItemUsingCurrentState(ball)
             livesLabel.text = "You win!"
+            resetButton.hidden = false
         }
     }
     
@@ -150,5 +184,10 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         let panGesture = sender.locationInView(view)
         paddle.center.x = panGesture.x
         dynamicAnimator.updateItemUsingCurrentState(paddle)
+    }
+    
+    @IBAction func onTappedResetButton(sender: UIButton) {
+        reset()
+        resetButton.hidden = true
     }
 }
