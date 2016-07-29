@@ -55,6 +55,17 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         paddleDynamicBehavior.allowsRotation = false
         dynamicAnimator.addBehavior(paddleDynamicBehavior)
         
+        //Brick dynamics
+        let brickDynamicBehavior = UIDynamicItemBehavior(items: bricks)
+        brickDynamicBehavior.density = 10000
+        brickDynamicBehavior.resistance = 100
+        brickDynamicBehavior.allowsRotation = false
+        dynamicAnimator.addBehavior(brickDynamicBehavior)
+        
+        for brick in bricks {
+            allObjects.append(brick)
+        }
+        
         // Push ball
         let pushBehavior = UIPushBehavior(items: [ball], mode: .Instantaneous)
         pushBehavior.pushDirection = CGVectorMake(0.2, 1.0)
